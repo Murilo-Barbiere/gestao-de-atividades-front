@@ -1,0 +1,38 @@
+<div class="auth-container">
+    
+    <div class="form-container">
+        <h2>Cadastro</h2>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label>Nome:</label>
+                <input type="name" formControlName="name">
+                <span *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="error">
+                    Insira um nome válido.
+                </span>
+            </div>
+    
+            <div>
+                <label>Email:</label>
+                <input type="email" formControlName="email">
+                <span *ngIf="registerForm.get('senha')?.touched && registerForm.get('senha')?.invalid" class="error">
+                    A senha deve ter pelo menos 6 caracteres.
+                </span>
+            </div>
+    
+            <div>
+                <label>Senha:</label>
+                <input type="senha" formControlName="senha">
+                <span *ngIf="registerForm.get('senha')?.touched && registerForm.get('senha')?.invalid" class="error">
+                    A senha deve ter pelo menos 4 caracteres.
+                </span>
+            </div>
+    
+            <p *ngIf="errorMessage" class="error-general">{{ errorMessage }}</p>
+    
+            <button type="submit" [disabled]="registerForm.invalid">Cadastrar</button>
+        </form>
+    
+        <p>Já tem uma conta? <a routerLink="/login">Faça login aqui</a></p>
+    </div>
+</div>
