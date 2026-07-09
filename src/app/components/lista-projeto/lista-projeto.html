@@ -1,0 +1,17 @@
+<div>
+  <h2>Meus Projetos</h2>
+
+  <p *ngIf="carregando">Carregando projetos...</p>
+
+  <p *ngIf="erro">{{ erro }}</p>
+
+  <ul *ngIf="!carregando && !erro">
+    <li *ngFor="let projeto of projetos">
+      {{ projeto.nome }}
+    </li>
+  </ul>
+
+  <p *ngIf="!carregando && !erro && projetos.length === 0">
+    Nenhum projeto encontrado.
+  </p>
+</div>
