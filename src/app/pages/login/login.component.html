@@ -15,7 +15,7 @@
   
       <div id="campo_senha">
         <label>Senha:</label>
-        <input type="senha" formControlName="senha">
+        <input type="password" formControlName="senha">
         <span *ngIf="loginForm.get('senha')?.touched && loginForm.get('senha')?.invalid" class="error">
           A senha deve ter pelo menos 6 caracteres.
         </span>

@@ -27,7 +27,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/home']);
         },
         error: (err) => {
           this.errorMessage = 'Credenciais inválidas. Tente novamente.';

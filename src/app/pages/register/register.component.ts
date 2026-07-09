@@ -27,7 +27,7 @@ export class RegisterComponent {
     if(this.registerForm.valid){
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/home']);
         },
         error: (err) => {
           this.errorMessage = 'Credenciais inválidas. Tente novamente.';

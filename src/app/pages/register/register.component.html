@@ -22,7 +22,7 @@
     
             <div>
                 <label>Senha:</label>
-                <input type="senha" formControlName="senha">
+                <input type="password" formControlName="senha">
                 <span *ngIf="registerForm.get('senha')?.touched && registerForm.get('senha')?.invalid" class="error">
                     A senha deve ter pelo menos 4 caracteres.
                 </span>
