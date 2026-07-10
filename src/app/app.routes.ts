@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { HomeComposenet } from './pages/home/home';
+import { LoginPage } from './pages/login/login.page';
+import { RegisterPage } from './pages/register/register.page';
+import { HomePage } from './pages/home/home.page';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'home', component: HomeComposenet },
+    { path: 'login', component: LoginPage },
+    { path: 'register', component: RegisterPage },
+    { path: 'home', component: HomePage },
     { path: '**', redirectTo: 'login' }
 ];

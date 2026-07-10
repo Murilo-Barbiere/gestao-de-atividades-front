@@ -2,7 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjetosService } from '../../core/services/projetos.service';
 import { Projeto } from '../../core/interface/projeto';
-import { ProjetoCardComponent } from "../projeto-card.component/projeto-card.component";
+import { ProjetoCardComponent } from "../projeto-card/projeto-card.component";
 
 @Component({
   selector: 'app-lista-projeto',

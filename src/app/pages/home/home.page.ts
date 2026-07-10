@@ -5,7 +5,7 @@ import { ListaProjeto } from '../../components/lista-projeto/lista-projeto';
   selector: 'app-home',
   standalone: true,
   imports: [ListaProjeto],
-  templateUrl: './home.html',
-  styleUrl: './home.css'
+  templateUrl: './home.page.html',
+  styleUrl: './home.page.css'
 })
-export class HomeComposenet {}
+export class HomePage {}

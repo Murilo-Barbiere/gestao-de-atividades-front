@@ -7,10 +7,10 @@ import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'app-register',
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  templateUrl: './register.page.html',
+  styleUrl: './register.page.css',
 })
-export class RegisterComponent {
+export class RegisterPage {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
