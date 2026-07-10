@@ -1,17 +1,22 @@
-<div>
+<div class="project-container">
   <h2>Meus Projetos</h2>
 
-  <p *ngIf="carregando">Carregando projetos...</p>
+  <p class="loading" *ngIf="carregando()">
+    Carregando projetos...
+  </p>
 
-  <p *ngIf="erro">{{ erro }}</p>
+  <p class="error" *ngIf="erro()">
+    {{ erro() }}
+  </p>
 
-  <ul *ngIf="!carregando && !erro">
-    <li *ngFor="let projeto of projetos">
-      {{ projeto.nome }}
-    </li>
+  <ul>
+      <app-projeto-card
+        *ngFor="let projeto of projetos()"
+        [projeto] = "projeto">
+      </app-projeto-card>
   </ul>
 
-  <p *ngIf="!carregando && !erro && projetos.length === 0">
+  <p class="empty" *ngIf="!carregando() && !erro() && projetos().length === 0">
     Nenhum projeto encontrado.
   </p>
 </div>

@@ -3,22 +3,22 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #F4F1EC;
+  background: #1e202c;
   padding: 20px;
 }
 
 .form-container {
-  background: #FFFFFF;
-  border: 1px solid #D9D2C7;
+  background: #31323e;
+  border: 1px solid #60519b; 
   border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(47, 57, 65, 0.20);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   padding: 40px;
   width: 100%;
   max-width: 420px;
 }
 
 .form-container h2 {
-  color: #2F3941;
+  color: #bfc0d1;
   font-size: 28px;
   font-weight: 700;
   margin: 0 0 28px;
@@ -31,7 +31,7 @@
 
 .form-container label {
   display: block;
-  color: #2F3941;
+  color: #bfc0d1;
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 6px;
@@ -40,38 +40,39 @@
 .form-container input {
   width: 100%;
   padding: 12px 14px;
-  background: #F8F6F3;
-  border: 1px solid #D9D2C7;
+  background: #1e202c; 
+  border: 1px solid #60519b;
   border-radius: 10px;
   font-size: 15px;
-  color: #2F3941;
+  color: #bfc0d1; 
   transition: all .2s ease;
   box-sizing: border-box;
 }
 
 .form-container input::placeholder {
-  color: #8FA1AD;
+  color: #60519b;
+  opacity: 0.6;
 }
 
 .form-container input:focus {
   outline: none;
-  background: #FFFFFF;
-  border-color: #5F7383;
-  box-shadow: 0 0 0 4px rgba(95, 115, 131, 0.18);
+  background: #1e202c;
+  border-color: #bfc0d1;
+  box-shadow: 0 0 0 4px rgba(96, 81, 155, 0.25);
 }
 
 .error {
   display: block;
   margin-top: 6px;
-  color: #A15C4A;
+  color: #bfc0d1;
   font-size: 13px;
   font-weight: 500;
 }
 
 .error-general {
-  color: #7A4336;
-  background: #F4E7E2;
-  border: 1px solid #D7B6AA;
+  color: #bfc0d1;
+  background: #60519b;
+  border: 1px solid #bfc0d1;
   border-radius: 10px;
   padding: 12px;
   text-align: center;
@@ -86,8 +87,8 @@ button[type="submit"] {
   margin-top: 8px;
   border: none;
   border-radius: 10px;
-  background: #5F7383;
-  color: #FFFFFF;
+  background: #60519b;
+  color: #bfc0d1;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -95,7 +96,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover:not(:disabled) {
-  background: #4E6271;
+  background: #4a3d7a; 
 }
 
 button[type="submit"]:active:not(:disabled) {
@@ -103,28 +104,28 @@ button[type="submit"]:active:not(:disabled) {
 }
 
 button[type="submit"]:disabled {
-  background: #A8B3BA;
+  background: #31323e;
   cursor: not-allowed;
-  opacity: .8;
+  opacity: .6;
 }
 
 .form-container p {
   margin-top: 24px;
   margin-bottom: 0;
   text-align: center;
-  color: #6E7B84;
+  color: #bfc0d1;
   font-size: 14px;
 }
 
 .form-container a {
-  color: #A07D69;
+  color: #60519b;
   text-decoration: none;
   font-weight: 600;
   transition: color .2s ease;
 }
 
 .form-container a:hover {
-  color: #876654;
+  color: #bfc0d1;
   text-decoration: underline;
 }
 
