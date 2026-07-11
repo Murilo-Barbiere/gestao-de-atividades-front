@@ -1,1 +1,23 @@
-<li>{{projeto().nome}}</li>
+<div class="card" (click)="abrirProjeto()">
+    <div class="card-header">
+        <div class="icon-container">
+            <div class="folder-icon"></div>
+        </div>
+
+        <h2>{{ projeto().nome }}</h2>
+    </div>
+
+    <div class="participantes">
+        <h4>Participantes: {{projeto().participantes.length}}</h4>
+    
+        <ul>
+        @for (participante of participantesExibidos(); track participante.id) {
+            <li>{{ participante.name | slice:0:1 }}</li>
+        }
+
+        @if (temMaisParticipantes()) {
+            <li class="mais-participantes">...</li>
+        }
+        </ul>
+    </div>
+</div>

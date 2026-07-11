@@ -15,11 +15,11 @@ import { ProjetoCardComponent } from "../projeto-card/projeto-card.component";
   styleUrl: './lista-projeto.css'
 })
 export class ListaProjeto implements OnInit {
+  constructor(private projetosService: ProjetosService) {}
+  
   projetos = signal<Projeto[]>([]);
   carregando = signal(true);
   erro = signal('');
-
-  constructor(private projetosService: ProjetosService) {}
 
   ngOnInit(): void {
     this.projetosService.getProjetos().subscribe({

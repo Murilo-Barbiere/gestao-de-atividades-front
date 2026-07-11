@@ -9,12 +9,12 @@
     {{ erro() }}
   </p>
 
-  <ul>
-      <app-projeto-card
-        *ngFor="let projeto of projetos()"
-        [projeto] = "projeto">
-      </app-projeto-card>
-  </ul>
+  <div class="lista_projetos">
+    <app-projeto-card
+      *ngFor="let projeto of projetos()"
+      [projeto] = "projeto">
+    </app-projeto-card>
+  </div>
 
   <p class="empty" *ngIf="!carregando() && !erro() && projetos().length === 0">
     Nenhum projeto encontrado.
