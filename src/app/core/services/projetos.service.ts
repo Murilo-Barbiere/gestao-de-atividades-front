@@ -18,4 +18,13 @@ export class ProjetosService {
 
         return this.http.get<any>(`${this.apiUrl}/projeto`, { headers });
     }
+
+    setProjetos(body: { nome: string }): Observable<{ nome: string }> {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        });
+
+        return this.http.post<{ nome: string }>(`${this.apiUrl}/projeto`, body, { headers });
+    }
 }

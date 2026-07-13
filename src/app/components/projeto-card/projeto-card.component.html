@@ -3,13 +3,10 @@
         <div class="icon-container">
             <div class="folder-icon"></div>
         </div>
-
         <h2>{{ projeto().nome }}</h2>
     </div>
 
     <div class="participantes">
-        <h4>Participantes: {{projeto().participantes.length}}</h4>
-    
         <ul>
         @for (participante of participantesExibidos(); track participante.id) {
             <li>{{ participante.name | slice:0:1 }}</li>
@@ -19,5 +16,10 @@
             <li class="mais-participantes">...</li>
         }
         </ul>
+
+        <div class="participantes-contador">
+            <div class="user-icon-css"></div>
+            <h4>{{projeto().participantes.length}}</h4>
+        </div>
     </div>
 </div>

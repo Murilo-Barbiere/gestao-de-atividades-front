@@ -2,10 +2,9 @@
     background-color: #2b2d35;
     border: 1px solid #3a3c46;
     border-radius: 16px;
-    padding: 24px 20px;
-    width: 320px;
+    padding: 10px 20px;
+    width: 305px;
     cursor: pointer;
-    box-sizing: border-box;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -16,15 +15,15 @@
 
 .card-header {
     display: flex;
-    align-items: center;
-    gap: 16px; 
+    flex-direction: column;;
+    gap: 10px; 
     margin-bottom: 32px; 
 }
 
 .icon-container {
     background-color: #343144;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -51,10 +50,36 @@
     left: 0;
 }
 
+.user-icon-css {
+    position: relative;
+    width: 12px;
+    height: 6px;
+    background-color: #8a8c95;
+    border-radius: 6px 6px 0 0;
+    margin-top: 7px;
+}
+
+.user-icon-css::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #8a8c95;
+    border-radius: 50%;
+    top: -7px;
+    left: 3px;
+}
+
+.participantes-contador{
+    display: flex;
+    align-items: center;
+    gap: 5  px;
+}
+
 .card-header h2 {
     margin: 0;
     color: #eef0f2;
-    font-size: 18px;
+    font-size: 30px;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
@@ -64,7 +89,7 @@
 .participantes {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
 
 .participantes h4 {
@@ -72,7 +97,6 @@
     color: #8a8c95;
     font-size: 14px;
     font-weight: 400;
-    order: 2;
 }
 
 .participantes ul {

@@ -1,3 +1,27 @@
-.home-page{
+.home-page {
+    display: grid;
+
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr;
+
+    grid-template-areas:
+        "sidebar header"
+        "sidebar lista";
+
+    min-height: 100vh;
+
     background: #1e202c;
+}
+
+app-home-header {
+    grid-area: header;
+}
+
+app-home-sidebar {
+    grid-area: sidebar;
+    background-color: #16171f;
+}
+
+app-lista-projeto {
+    grid-area: lista;
 }

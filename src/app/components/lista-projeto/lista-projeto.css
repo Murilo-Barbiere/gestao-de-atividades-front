@@ -1,18 +1,10 @@
 .project-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 20px 60px;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #eef0f2;
     min-height: 100vh;
-}
-
-.project-container h2 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 24px;
-    color: #ffffff;
-    letter-spacing: -0.5px;
 }
 
 .lista_projetos {
