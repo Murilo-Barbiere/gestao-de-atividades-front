@@ -1,0 +1,204 @@
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  backdrop-filter: blur(2px);
+}
+
+.popup-card {
+  background: #31323e;
+  border: 1px solid rgba(191, 192, 209, 0.12);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+  color: #bfc0d1;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Cabeçalho */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(191, 192, 209, 0.12);
+  padding-bottom: 12px;
+}
+
+.popup-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #bfc0d1;
+  margin: 0;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: #8b8ca0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.btn-close:hover {
+  color: #bfc0d1;
+}
+
+/* Corpo do Popup */
+.popup-body {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Botão de Edição (Lápis) */
+.btn-edit {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #60519b;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-edit:hover {
+  background-color: #1e202c;
+  color: #4a3d7a;
+}
+
+/* Grupos de informação (Visualização) */
+.info-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8b8ca0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: #bfc0d1;
+  font-weight: 500;
+}
+
+/* Grupos de campos (Edição) */
+.field-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8b8ca0;
+}
+
+.field-group input {
+  width: 100%;
+  padding: 10px 12px;
+  background: #1e202c;
+  border: 1px solid rgba(191, 192, 209, 0.12);
+  border-radius: 8px;
+  color: #bfc0d1;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.field-group input:focus {
+  outline: none;
+  border-color: #60519b;
+}
+
+/* Alertas */
+.alert-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.alert-success {
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #34d399;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+/* Botões do Rodapé */
+.popup-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid rgba(191, 192, 209, 0.12);
+  padding-top: 16px;
+}
+
+.btn-cancelar,
+.btn-salvar {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-cancelar {
+  background: rgba(191, 192, 209, 0.12);
+  color: #bfc0d1;
+}
+
+.btn-cancelar:hover {
+  background: rgba(191, 192, 209, 0.2);
+}
+
+.btn-salvar {
+  background: #60519b;
+  color: #FFFFFF;
+}
+
+.btn-salvar:hover {
+  background: #4a3d7a;
+}
+
+.btn-cancelar:disabled,
+.btn-salvar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,4 +1,4 @@
-<button class="user-button" type="button">
+<button class="user-button" type="button" (click)="abrirPopup()">
   <span class="user-avatar">{{ (usuario()?.name?.charAt(0) ?? '?') | uppercase }}</span>
 
   @if (carregando()) {
@@ -9,3 +9,11 @@
     <span class="user-name">{{ usuario()?.name }}</span>
   }
 </button>
+
+@if (exibirPopup() && usuario()) {
+  <app-user-popup
+    [usuario]="usuario()!"
+    (fechar)="fecharPopup()"
+    (usuarioAtualizado)="onUsuarioAtualizado($event)"
+  ></app-user-popup>
+}

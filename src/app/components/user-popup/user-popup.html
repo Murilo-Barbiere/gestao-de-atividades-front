@@ -1,0 +1,85 @@
+<div class="popup-overlay" (click)="onOverlayClick($event)">
+  <div class="popup-card">
+    <div class="popup-header">
+      <h2 class="popup-title">Perfil do Usuário</h2>
+      <button class="btn-close" (click)="fecharPopup()" [disabled]="carregando">✕</button>
+    </div>
+
+    <div class="popup-body">
+      @if (!editando) {
+        <button class="btn-edit" (click)="ativarEdicao()" title="Editar Perfil">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+          </svg>
+        </button>
+
+        <div class="info-group">
+          <span class="info-label">Nome</span>
+          <span class="info-value">{{ usuario.name }}</span>
+        </div>
+
+        <div class="info-group">
+          <span class="info-label">E-mail</span>
+          <span class="info-value">{{ usuario.email }}</span>
+        </div>
+      } @else {
+        <div class="field-group">
+          <label for="edit-nome">Nome</label>
+          <input
+            id="edit-nome"
+            type="text"
+            [(ngModel)]="nome"
+            name="nome"
+            [disabled]="carregando"
+          />
+        </div>
+
+        <div class="field-group">
+          <label for="edit-email">E-mail</label>
+          <input
+            id="edit-email"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            [disabled]="carregando"
+          />
+        </div>
+
+        <div class="field-group">
+          <label for="edit-senha">Nova Senha</label>
+          <input
+            id="edit-senha"
+            type="password"
+            [(ngModel)]="senha"
+            name="senha"
+            placeholder="Digite sua senha"
+            [disabled]="carregando"
+          />
+        </div>
+      }
+    </div>
+
+    @if (erro) {
+      <div class="alert-error">{{ erro }}</div>
+    }
+
+    @if (sucesso) {
+      <div class="alert-success">{{ sucesso }}</div>
+    }
+
+    @if (editando) {
+      <div class="popup-footer">
+        <button class="btn-cancelar" (click)="cancelarEdicao()" [disabled]="carregando">
+          Cancelar
+        </button>
+        <button class="btn-salvar" (click)="salvar()" [disabled]="carregando">
+          @if (carregando) {
+            Salvando...
+          } @else {
+            Salvar
+          }
+        </button>
+      </div>
+    }
+  </div>
+</div>
