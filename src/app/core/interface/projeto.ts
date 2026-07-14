@@ -1,8 +1,8 @@
-import { user } from "./user";
+import { User } from "./user";
 
 export interface Projeto {
     id: number;
     nome: string;
-    participantes: user[];
+    participantes: User[];
     numeroDeParticipantes?: number;
 }

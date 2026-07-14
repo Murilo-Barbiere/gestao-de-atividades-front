@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProjetosService } from '../../core/services/projetos.service';
 import { Projeto } from '../../core/interface/projeto';
 import { ProjetoCardComponent } from "../projeto-card/projeto-card.component";
+import { HomeHeaderLista } from '../home-header-lista/home-header-lista';
 
 @Component({
   selector: 'app-lista-projeto',
@@ -10,6 +11,7 @@ import { ProjetoCardComponent } from "../projeto-card/projeto-card.component";
   imports: [
       CommonModule, 
       ProjetoCardComponent,
+      HomeHeaderLista,
     ],
   templateUrl: './lista-projeto.html',
   styleUrl: './lista-projeto.css'

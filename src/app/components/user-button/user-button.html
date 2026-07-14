@@ -1,0 +1,11 @@
+<button class="user-button" type="button">
+  <span class="user-avatar">{{ (usuario()?.name?.charAt(0) ?? '?') | uppercase }}</span>
+
+  @if (carregando()) {
+    <span class="user-name">Carregando...</span>
+  } @else if (erro()) {
+    <span class="user-name user-name--erro">Erro ao carregar</span>
+  } @else {
+    <span class="user-name">{{ usuario()?.name }}</span>
+  }
+</button>

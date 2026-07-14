@@ -3,9 +3,13 @@
     border: 1px solid #3a3c46;
     border-radius: 16px;
     padding: 10px 20px;
-    width: 305px;
+    width: 100%; 
+    box-sizing: border-box; 
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:hover {
@@ -15,7 +19,7 @@
 
 .card-header {
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
     gap: 10px; 
     margin-bottom: 32px; 
 }
@@ -70,10 +74,10 @@
     left: 3px;
 }
 
-.participantes-contador{
+.participantes-contador {
     display: flex;
     align-items: center;
-    gap: 5  px;
+    gap: 5px; 
 }
 
 .card-header h2 {

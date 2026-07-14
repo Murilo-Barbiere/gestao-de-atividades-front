@@ -1,14 +1,5 @@
-<div class="page-header">
-  <h1 class="page-title">Meus Projetos</h1>
+<div class="container">
+    <h1>Gestão de Atividades</h1>
 
-  <button class="btn-novo-projeto" (click)="abrirPopup()">
-    + Novo Projeto
-  </button>
+    <app-user-button></app-user-button>
 </div>
-
-@if (popupAberto()) {
-  <app-projeto-create-popup
-    (fechar)="fecharPopup()"
-    (projetoCriado)="fecharPopup()"
-  />
-}

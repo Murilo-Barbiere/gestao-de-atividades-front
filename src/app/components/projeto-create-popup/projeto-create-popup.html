@@ -1,13 +1,11 @@
 <div class="popup-overlay" (click)="onOverlayClick($event)">
   <div class="popup-card">
 
-    <!-- Cabeçalho -->
     <div class="popup-header">
       <h2 class="popup-title">Novo Projeto</h2>
       <button class="btn-close" (click)="fecharPopup()" [disabled]="carregando">✕</button>
     </div>
 
-    <!-- Campo do nome -->
     <div class="field-group">
       <label for="nome-projeto">Nome do projeto</label>
       <input
@@ -20,17 +18,14 @@
       />
     </div>
 
-    <!-- Mensagem de erro -->
     @if (erro) {
       <div class="alert-error">{{ erro }}</div>
     }
 
-    <!-- Mensagem de sucesso -->
     @if (sucesso) {
       <div class="alert-success">Projeto criado com sucesso!</div>
     }
 
-    <!-- Botões -->
     <div class="popup-footer">
       <button class="btn-cancelar" (click)="fecharPopup()" [disabled]="carregando">
         Cancelar
