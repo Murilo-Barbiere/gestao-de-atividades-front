@@ -1,0 +1,40 @@
+<div class="atividades-wrapper">
+  <div class="header-section">
+    <h2>Atividades do Projeto</h2>
+    <span class="badge-count" *ngIf="totalAtividades() > 0">
+      {{ totalAtividades() }} {{ totalAtividades() === 1 ? 'Atividade' : 'Atividades' }}
+    </span>
+  </div>
+
+  <div *ngIf="loading()" class="loading-state">
+    <div class="spinner"></div>
+    <p>Carregando atividades...</p>
+  </div>
+
+  <div *ngIf="error()" class="error-state">
+    <span class="error-icon">Aviso:</span>
+    <p>{{ error() }}</p>
+    <button (click)="carregarAtividades(projetoId())" class="retry-btn">Tentar Novamente</button>
+  </div>
+
+  <div *ngIf="!loading() && !error() && atividades().length === 0" class="empty-state">
+    <p>Nenhuma atividade encontrada.</p>
+    <p>Comece criando uma nova atividade para este projeto!</p>
+  </div>
+
+  <div *ngIf="!loading() && !error() && atividades().length > 0" class="atividades-list">
+    <ng-container *ngFor="let atividade of atividades(); trackBy: trackById">
+      <ng-container *ngTemplateOutlet="atividadeTemplate; context: { $implicit: atividade }"></ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #atividadeTemplate let-atividade>
+  <app-atividade-card [atividade]="atividade" (statusAlterado)="carregarAtividades(projetoId())">
+    <ng-container *ngIf="atividade.subAtividades && atividade.subAtividades.length > 0">
+      <ng-container *ngFor="let sub of atividade.subAtividades; trackBy: trackById">
+        <ng-container *ngTemplateOutlet="atividadeTemplate; context: { $implicit: sub }"></ng-container>
+      </ng-container>
+    </ng-container>
+  </app-atividade-card>
+</ng-template>

@@ -1,0 +1,48 @@
+<div class="atividade-card-wrapper" [class.is-child]="atividade().paiId">
+  <div class="atividade-card" [class.realizada]="atividade().realizada" [class.vencida]="atividade().vencido">
+    
+    <div class="toggle-container" *ngIf="temSubAtividades()">
+      <button class="toggle-btn" (click)="toggleCollapse()" [class.collapsed]="isCollapsed()">
+        <span class="arrow-icon"></span>
+      </button>
+    </div>
+
+    <div class="card-left">
+      <label class="custom-checkbox">
+        <input type="checkbox" [checked]="atividade().realizada" (click)="onCheckboxClick($event)" />
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <div class="card-body">
+      <div class="card-header">
+        <h4 class="atividade-titulo">{{ atividade().titulo }}</h4>
+        <div class="meta-badges">
+          <span class="badge priority-badge" [ngClass]="getPriorityClass(atividade().prioridade)">
+            {{ atividade().prioridade }}
+          </span>
+          <span *ngIf="atividade().vencido" class="badge expired-badge">
+            Vencido
+          </span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="due-date" [class.overdue]="atividade().vencido">
+          Vencimento: {{ atividade().data_vencimento | date: 'dd/MM/yyyy' }}
+        </span>
+
+        <div *ngIf="atividade().tags && atividade().tags.length > 0" class="tags-container">
+          <span *ngFor="let tag of atividade().tags" class="tag-badge">
+            #{{ tag.name }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isCollapsed() && temSubAtividades()" class="sub-atividades-projection">
+    <div class="tree-line"></div>
+    <ng-content></ng-content>
+  </div>
+</div>

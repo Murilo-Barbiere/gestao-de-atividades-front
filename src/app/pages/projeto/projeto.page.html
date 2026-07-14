@@ -1,1 +1,9 @@
-<p>projeto id: {{id}}</p>
+<div class="projeto-page-container">
+  @if (projetoId(); as id) {
+    <app-atividade-lista [projetoId]="id"></app-atividade-lista>
+  } @else {
+    <div class="no-project">
+      <p>Projeto inválido ou não selecionado.</p>
+    </div>
+  }
+</div>
