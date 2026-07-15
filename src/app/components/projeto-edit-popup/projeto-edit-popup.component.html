@@ -1,0 +1,45 @@
+<div class="popup-overlay" (click)="onOverlayClick($event)">
+  <div class="popup-card">
+
+    <div class="popup-header">
+      <h2 class="popup-title">Editar Projeto</h2>
+      <button class="btn-close" (click)="fecharPopup()" [disabled]="carregando">X</button>
+    </div>
+
+    <div class="field-group">
+      <label for="nome-projeto-edit">Nome do projeto</label>
+      <input
+        id="nome-projeto-edit"
+        type="text"
+        [(ngModel)]="nome"
+        name="nome"
+        placeholder="Nome do projeto"
+        [disabled]="carregando || sucesso"
+      />
+    </div>
+
+    @if (erro) {
+      <div class="alert-error">{{ erro }}</div>
+    }
+
+    @if (sucesso) {
+      <div class="alert-success">Projeto atualizado com sucesso!</div>
+    }
+
+    <div class="popup-footer">
+      <button class="btn-cancelar" (click)="fecharPopup()" [disabled]="carregando">
+        Cancelar
+      </button>
+      <button class="btn-salvar" (click)="salvarEdicao()" [disabled]="carregando || sucesso">
+        @if (carregando) {
+          Salvando...
+        } @else if (sucesso) {
+          Salvo!
+        } @else {
+          Salvar
+        }
+      </button>
+    </div>
+
+  </div>
+</div>

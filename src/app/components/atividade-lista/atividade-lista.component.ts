@@ -1,5 +1,5 @@
 import { Component, input, inject, effect, signal, computed } from '@angular/core';
-import { CommonModule, NgTemplateOutlet, DatePipe } from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { AtividadesService } from '../../core/services/atividades.service';
 import { Atividade, AtividadeFiltro } from '../../core/interface/atividade';
 import { AtividadeCardComponent } from '../atividade-card/atividade-card.component';
@@ -8,7 +8,7 @@ import { ProjetoBuscaComponent } from '../projeto-busca/atividade_busca.componen
 @Component({
   selector: 'app-atividade-lista',
   standalone: true,
-  imports: [CommonModule, NgTemplateOutlet, DatePipe, AtividadeCardComponent, ProjetoBuscaComponent],
+  imports: [CommonModule, NgTemplateOutlet, AtividadeCardComponent, ProjetoBuscaComponent],
   templateUrl: './atividade-lista.component.html',
   styleUrl: './atividade-lista.component.css'
 })

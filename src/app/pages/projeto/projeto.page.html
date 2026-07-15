@@ -6,12 +6,32 @@
 
   <div class="lista_atividades">
     @if (projetoId(); as id) {
+
+      <!-- Cabeçalho do projeto com botão de editar -->
+      <div class="projeto-header">
+        <h1 class="projeto-nome">{{ nomeProjeto() || 'Carregando...' }}</h1>
+        <button class="btn-editar" (click)="abrirEditPopup()">
+          Editar Projeto
+        </button>
+      </div>
+
       <app-atividade-lista [projetoId]="id"></app-atividade-lista>
+
     } @else {
       <div class="no-project">
-        <p>Projeto inválido ou não selecionado.</p>
+        <p>Projeto invalido ou nao selecionado.</p>
       </div>
     }
   </div>
-  
+
+  <!-- Popup de edição — só renderiza quando mostrarEditPopup() for true -->
+  @if (mostrarEditPopup() && projetoId()) {
+    <app-projeto-edit-popup
+      [projetoId]="projetoId()!"
+      [nomeAtual]="nomeProjeto()"
+      (fechar)="fecharEditPopup()"
+      (projetoEditado)="onProjetoEditado($event)"
+    ></app-projeto-edit-popup>
+  }
+
 </div>

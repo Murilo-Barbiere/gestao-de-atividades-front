@@ -3,10 +3,48 @@
   min-height: 100vh;
 }
 
-.lista_atividades{
+.lista_atividades {
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1.5rem;
+}
+
+/* Cabeçalho com nome do projeto e botão de editar */
+.projeto-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.projeto-nome {
+  font-size: 22px;
+  font-weight: 700;
+  color: #bfc0d1;
+  margin: 0;
+}
+
+.btn-editar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background: rgba(96, 81, 155, 0.15);
+  border: 1px solid rgba(96, 81, 155, 0.4);
+  border-radius: 8px;
+  color: #7c6db5;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-editar:hover {
+  background: rgba(96, 81, 155, 0.28);
+  border-color: #60519b;
+  color: #bfc0d1;
 }
 
 .no-project {
