@@ -2,7 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Atividade, AtividadeFiltro } from '../interface/atividade';
+import { Atividade, AtividadeFiltro, PrioridadeAtividade } from '../interface/atividade';
+
+export interface AtividadeCreateDto {
+  titulo: string;
+  idProjeto: number;
+  prioridadeAtividade: PrioridadeAtividade;
+  dataVencimento: string; 
+  paiId?: number;
+  texto?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +46,14 @@ export class AtividadesService {
 
     return this.http.patch<Atividade>(`${this.apiUrl}/atividade/${atividadeId}`, body, { headers });
   }
+
+  postAtividade(dados: AtividadeCreateDto): Observable<Atividade> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<Atividade>(`${this.apiUrl}/atividade`, dados, { headers });
+  }
 }
+

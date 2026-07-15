@@ -1,21 +1,25 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AtividadeListaComponent } from '../../components/atividade-lista/atividade-lista.component';
 import { HomeHeader } from '../../components/home-header/home-header';
 import { ProjetoEditPopupComponent } from '../../components/projeto-edit-popup/projeto-edit-popup.component';
+import { AtividadeCreatePopupComponent } from '../../components/atividade-create-popup/atividade-create-popup';
 import { ProjetosService } from '../../core/services/projetos.service';
 
 @Component({
   selector: 'app-projeto.page',
-  imports: [CommonModule, AtividadeListaComponent, HomeHeader, ProjetoEditPopupComponent],
+  imports: [CommonModule, AtividadeListaComponent, HomeHeader, ProjetoEditPopupComponent, AtividadeCreatePopupComponent],
   templateUrl: './projeto.page.html',
   styleUrl: './projeto.page.css',
 })
 export class ProjetoPage implements OnInit {
+  @ViewChild(AtividadeListaComponent) atividadeListaComponent!: AtividadeListaComponent;
+
   projetoId = signal<number | null>(null);
   nomeProjeto = signal<string>('');
   mostrarEditPopup = signal<boolean>(false);
+  mostrarCreateAtividadePopup = signal<boolean>(false);
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +35,6 @@ export class ProjetoPage implements OnInit {
     }
   }
 
-  // Busca o projeto para exibir o nome atual no popup
   carregarProjeto(id: number): void {
     this.projetosService.getProjetoPorId(id).subscribe({
       next: (projeto) => {
@@ -51,8 +54,22 @@ export class ProjetoPage implements OnInit {
     this.mostrarEditPopup.set(false);
   }
 
-  // Recebe o novo nome emitido pelo popup e atualiza o signal local
   onProjetoEditado(novoNome: string): void {
     this.nomeProjeto.set(novoNome);
+  }
+
+  abrirCreateAtividadePopup(): void {
+    this.mostrarCreateAtividadePopup.set(true);
+  }
+
+  fecharCreateAtividadePopup(): void {
+    this.mostrarCreateAtividadePopup.set(false);
+  }
+
+  onAtividadeCriada(): void {
+    const id = this.projetoId();
+    if (id && this.atividadeListaComponent) {
+      this.atividadeListaComponent.carregarAtividades(id, this.atividadeListaComponent.filtros());
+    }
   }
 }

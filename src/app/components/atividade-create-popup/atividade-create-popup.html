@@ -1,0 +1,91 @@
+<div class="popup-overlay" (click)="onOverlayClick($event)">
+  <div class="popup-card">
+    <div class="popup-header">
+      <h2 class="popup-title">Nova Atividade</h2>
+      <button class="btn-close" (click)="fecharPopup()" [disabled]="carregando">&times;</button>
+    </div>
+
+    @if (erro) {
+      <div class="alert-error">{{ erro }}</div>
+    }
+
+    @if (sucesso) {
+      <div class="alert-success">Atividade criada com sucesso!</div>
+    }
+
+    <form (ngSubmit)="criarAtividade()" #atividadeForm="ngForm">
+      <div class="field-group">
+        <label for="titulo">Título da Atividade</label>
+        <input
+          type="text"
+          id="titulo"
+          name="titulo"
+          [(ngModel)]="titulo"
+          placeholder="Ex: Desenvolver tela de login"
+          required
+          [disabled]="carregando"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="field-group">
+        <label for="prioridade">Prioridade</label>
+        <select
+          id="prioridade"
+          name="prioridade"
+          [(ngModel)]="prioridadeAtividade"
+          [disabled]="carregando"
+        >
+          @for (prio of prioridades; track prio) {
+            <option [value]="prio">{{ prio }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="dataVencimento">Data de Vencimento</label>
+        <input
+          type="date"
+          id="dataVencimento"
+          name="dataVencimento"
+          [(ngModel)]="dataVencimento"
+          required
+          [disabled]="carregando"
+        />
+      </div>
+
+      <div class="field-group">
+        <label for="paiId">Sub-tarefa de (Opcional)</label>
+        <select
+          id="paiId"
+          name="paiId"
+          [(ngModel)]="paiId"
+          [disabled]="carregando"
+        >
+          <option [ngValue]="null">Nenhuma (Atividade Principal)</option>
+          @for (ativ of atividadesDoProjeto; track ativ.id) {
+            <option [value]="ativ.id">{{ ativ.titulo }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="popup-footer">
+        <button
+          type="button"
+          class="btn-cancelar"
+          (click)="fecharPopup()"
+          [disabled]="carregando"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn-criar"
+          [disabled]="carregando || !titulo.trim() || !dataVencimento"
+        >
+          {{ carregando ? 'Criando...' : 'Criar Atividade' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

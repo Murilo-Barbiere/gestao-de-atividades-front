@@ -7,12 +7,16 @@
   <div class="lista_atividades">
     @if (projetoId(); as id) {
 
-      <!-- Cabeçalho do projeto com botão de editar -->
       <div class="projeto-header">
         <h1 class="projeto-nome">{{ nomeProjeto() || 'Carregando...' }}</h1>
-        <button class="btn-editar" (click)="abrirEditPopup()">
-          Editar Projeto
-        </button>
+        <div class="header-actions">
+          <button class="btn-criar-atividade" (click)="abrirCreateAtividadePopup()">
+            Criar Atividade
+          </button>
+          <button class="btn-editar" (click)="abrirEditPopup()">
+            Editar Projeto
+          </button>
+        </div>
       </div>
 
       <app-atividade-lista [projetoId]="id"></app-atividade-lista>
@@ -24,7 +28,6 @@
     }
   </div>
 
-  <!-- Popup de edição — só renderiza quando mostrarEditPopup() for true -->
   @if (mostrarEditPopup() && projetoId()) {
     <app-projeto-edit-popup
       [projetoId]="projetoId()!"
@@ -32,6 +35,14 @@
       (fechar)="fecharEditPopup()"
       (projetoEditado)="onProjetoEditado($event)"
     ></app-projeto-edit-popup>
+  }
+
+  @if (mostrarCreateAtividadePopup() && projetoId()) {
+    <app-atividade-create-popup
+      [projetoId]="projetoId()!"
+      (fechar)="fecharCreateAtividadePopup()"
+      (atividadeCriada)="onAtividadeCriada()"
+    ></app-atividade-create-popup>
   }
 
 </div>
