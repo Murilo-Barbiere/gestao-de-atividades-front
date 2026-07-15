@@ -150,6 +150,14 @@
   font-weight: 600;
   color: #bfc0d1;
   line-height: 1.4;
+  cursor: pointer;
+  transition: color 0.18s;
+}
+
+.atividade-titulo:hover {
+  color: #a094d1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .meta-badges {

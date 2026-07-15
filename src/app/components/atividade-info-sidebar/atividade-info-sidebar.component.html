@@ -1,0 +1,72 @@
+<aside class="info-sidebar">
+
+  <div class="info-card">
+    <h3 class="card-title">Status</h3>
+    <div class="info-row">
+      <span class="info-value" [class.done-text]="atividade().realizada">
+        {{ atividade().realizada ? 'Concluída' : 'Em andamento' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3 class="card-title">Prioridade</h3>
+    <div class="info-row">
+      <span class="badge priority-badge" [ngClass]="getPriorityClass(atividade().prioridade)">
+        {{ atividade().prioridade }}
+      </span>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3 class="card-title">Vencimento</h3>
+    <div class="info-row">
+      <span class="info-value" [class.overdue-text]="atividade().vencido && !atividade().realizada">
+        {{ atividade().data_vencimento | date: 'dd/MM/yyyy' }}
+      </span>
+      @if (atividade().vencido && !atividade().realizada) {
+        <span class="badge expired-mini">Vencido</span>
+      }
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3 class="card-title">Tags</h3>
+    @if (atividade().tags && atividade().tags.length > 0) {
+      <div class="tags-list">
+        @for (tag of atividade().tags; track tag.id) {
+          <span class="tag-chip"># {{ tag.name }}</span>
+        }
+      </div>
+    } @else {
+      <p class="empty-info">Nenhuma tag</p>
+    }
+  </div>
+
+  @if (atividade().paiId) {
+    <div class="info-card">
+      <h3 class="card-title">Sub-atividade de</h3>
+      <div class="info-row">
+        <span class="info-value muted">Atividade pai</span>
+      </div>
+    </div>
+  }
+
+  @if (atividade().subAtividades && atividade().subAtividades.length > 0) {
+    <div class="info-card">
+      <h3 class="card-title">
+        Sub-atividades
+        <span class="count-badge">{{ atividade().subAtividades.length }}</span>
+      </h3>
+      <div class="sub-list">
+        @for (sub of atividade().subAtividades; track sub.id) {
+          <div class="sub-item" [class.sub-done]="sub.realizada">
+            <span class="sub-check">{{ sub.realizada ? '✓' : '○' }}</span>
+            <span class="sub-titulo">{{ sub.titulo }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+</aside>

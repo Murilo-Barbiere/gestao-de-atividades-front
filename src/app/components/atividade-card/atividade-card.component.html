@@ -16,7 +16,8 @@
 
     <div class="card-body">
       <div class="card-header">
-        <h4 class="atividade-titulo">{{ atividade().titulo }}</h4>
+        <h4 class="atividade-titulo" (click)="navegarParaAtividade($event)" role="button" tabindex="0"
+          (keydown.enter)="navegarParaAtividade($event)">{{ atividade().titulo }}</h4>
         <div class="meta-badges">
           <span class="badge priority-badge" [ngClass]="getPriorityClass(atividade().prioridade)">
             {{ atividade().prioridade }}

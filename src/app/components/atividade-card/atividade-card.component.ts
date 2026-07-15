@@ -1,5 +1,6 @@
 import { Component, input, signal, computed, inject, output } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { Atividade } from '../../core/interface/atividade';
 import { AtividadesService } from '../../core/services/atividades.service';
 
@@ -12,6 +13,7 @@ import { AtividadesService } from '../../core/services/atividades.service';
 })
 export class AtividadeCardComponent {
   private atividadesService = inject(AtividadesService);
+  private router = inject(Router);
 
   atividade = input.required<Atividade>();
   statusAlterado = output<void>();
@@ -61,6 +63,11 @@ export class AtividadeCardComponent {
         }
       });
     }
+  }
+
+  navegarParaAtividade(event: Event): void {
+    event.stopPropagation();
+    this.router.navigate(['/atividade', this.atividade().id]);
   }
 
   deletarAtividade(event: Event) {

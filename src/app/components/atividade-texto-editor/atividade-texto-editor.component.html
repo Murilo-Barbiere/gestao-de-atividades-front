@@ -1,0 +1,93 @@
+<div class="editor-container">
+
+  <!-- Toolbar -->
+  <div class="editor-toolbar">
+    <div class="toolbar-left">
+      <span class="section-label">Notas & Descrição</span>
+
+      <div class="mode-tabs">
+        <button
+          class="mode-tab"
+          [class.active]="modo() === 'preview'"
+          (click)="modo() !== 'preview' && alternarModo()"
+          id="btn-preview-mode"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          Preview
+        </button>
+        <button
+          class="mode-tab"
+          [class.active]="modo() === 'edit'"
+          (click)="modo() !== 'edit' && alternarModo()"
+          id="btn-edit-mode"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          Editar
+        </button>
+      </div>
+    </div>
+
+    <div class="toolbar-right">
+      @if (salvando()) {
+        <span class="save-status saving">
+          <span class="save-spinner"></span>
+          Salvando...
+        </span>
+      } @else if (salvoRecentemente()) {
+        <span class="save-status saved">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Salvo
+        </span>
+      }
+
+      <button class="btn-save" (click)="salvarTexto()" [disabled]="salvando()" id="btn-save-texto">
+        Salvar agora
+      </button>
+    </div>
+  </div>
+
+  <!-- Markdown hint bar (only in edit mode) -->
+  @if (modo() === 'edit') {
+    <div class="markdown-hints">
+      <span class="hint"><code>**negrito**</code></span>
+      <span class="hint"><code>*itálico*</code></span>
+      <span class="hint"><code># Título</code></span>
+      <span class="hint"><code>- item</code></span>
+      <span class="hint"><code>```código```</code></span>
+      <span class="hint"><code>[link](url)</code></span>
+      <span class="hint"><code>[ ] tarefa</code></span>
+    </div>
+  }
+
+  <!-- Editor -->
+  @if (modo() === 'edit') {
+    <textarea
+      class="texto-editor"
+      [value]="textoEditavel()"
+      (input)="onTextoChange($any($event.target).value)"
+      placeholder="Escreva aqui as notas, descrição, passos ou qualquer informação sobre esta atividade...&#10;&#10;Suporta Markdown:&#10;# Título&#10;**negrito** *itálico*&#10;- lista&#10;```código```"
+      spellcheck="true"
+      id="textarea-texto-atividade"
+    ></textarea>
+  }
+
+  <!-- Preview -->
+  @if (modo() === 'preview') {
+    <div
+      class="markdown-preview"
+      [innerHTML]="renderMarkdown(textoEditavel())"
+    ></div>
+  }
+
+</div>

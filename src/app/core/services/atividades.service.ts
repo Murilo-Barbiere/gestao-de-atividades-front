@@ -56,6 +56,15 @@ export class AtividadesService {
     return this.http.post<Atividade>(`${this.apiUrl}/atividade`, dados, { headers });
   }
 
+  getAtividadeById(atividadeId: number): Observable<Atividade> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<Atividade>(`${this.apiUrl}/atividade/${atividadeId}`, { headers });
+  }
+
   deleteAtividade(atividadeId: number): Observable<void> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
