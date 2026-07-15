@@ -1,0 +1,70 @@
+<div class="busca-container" [formGroup]="form">
+
+  <div class="busca-inputs">
+    <div class="input-group search-input">
+      <label for="busca">Buscar Atividade</label>
+      <div class="input-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-icon">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          id="busca"
+          type="text"
+          formControlName="busca"
+          placeholder="Digite o título ou descrição..."
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="busca-filtros">
+    <div class="input-group">
+      <label for="prioridade">Prioridade</label>
+      <select id="prioridade" formControlName="prioridade">
+        <option value="">Todas</option>
+        <option *ngFor="let prio of prioridades" [value]="prio">
+          {{ getPrioridadeLabel(prio) }}
+        </option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option *ngFor="let st of statusOpcoes" [value]="st">
+          {{ getStatusLabel(st) }}
+        </option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="sort">Ordenar por</label>
+      <select id="sort" formControlName="sort">
+        <option value="">Padrão</option>
+        <option *ngFor="let ord of ordenacoes" [value]="ord">
+          {{ getOrdenacaoLabel(ord) }}
+        </option>
+      </select>
+    </div>
+
+    <div class="input-group select-direcao">
+      <label for="order">Direção</label>
+      <select id="order" formControlName="order">
+        <option value="asc">Ascendente</option>
+        <option value="desc">Descendente</option>
+      </select>
+    </div>
+
+    <div class="acoes-filtros">
+      <button type="button" class="btn-limpar" (click)="limparFiltros()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+        Limpar Filtros
+      </button>
+    </div>
+  </div>
+</div>

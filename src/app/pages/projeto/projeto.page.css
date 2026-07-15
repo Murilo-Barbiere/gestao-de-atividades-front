@@ -1,4 +1,9 @@
 .projeto-page-container {
+  background-color: #1e202c;
+  min-height: 100vh;
+}
+
+.lista_atividades{
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1.5rem;

@@ -6,6 +6,8 @@
     </span>
   </div>
 
+  <app-projeto-busca (filtroAlterado)="onFiltroAlterado($event)"></app-projeto-busca>
+
   <div *ngIf="loading()" class="loading-state">
     <div class="spinner"></div>
     <p>Carregando atividades...</p>

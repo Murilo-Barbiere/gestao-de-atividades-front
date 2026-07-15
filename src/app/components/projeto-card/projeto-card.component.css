@@ -13,8 +13,10 @@
 }
 
 .card:hover {
-    background-color: #31333c;
     transform: translateY(-2px);
+    background: #4a3d7a;
+    border-color: #7c6db5;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card-header {

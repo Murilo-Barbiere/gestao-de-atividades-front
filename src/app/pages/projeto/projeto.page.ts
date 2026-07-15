@@ -1,10 +1,11 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AtividadeListaComponent } from '../../components/atividade-lista/atividade-lista.component';
+import { HomeHeader } from '../../components/home-header/home-header';
 
 @Component({
   selector: 'app-projeto.page',
-  imports: [AtividadeListaComponent],
+  imports: [AtividadeListaComponent, HomeHeader],
   templateUrl: './projeto.page.html',
   styleUrl: './projeto.page.css',
 })
