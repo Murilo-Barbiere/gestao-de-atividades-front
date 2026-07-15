@@ -1,0 +1,49 @@
+<div class="page-header">
+
+  <div class="breadcrumb-row">
+    <button class="btn-back" (click)="onVoltar()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      Voltar ao Projeto
+    </button>
+
+    <div class="status-badges">
+      <span class="badge priority-badge" [ngClass]="getPriorityClass(atividade().prioridade)">
+        {{ atividade().prioridade }}
+      </span>
+      @if (atividade().vencido && !atividade().realizada) {
+        <span class="badge expired-badge">Vencido</span>
+      }
+      @if (atividade().realizada) {
+        <span class="badge done-badge">✓ Concluída</span>
+      }
+    </div>
+  </div>
+
+  <div class="title-row">
+    <h1 class="atividade-titulo" [class.realizada]="atividade().realizada">
+      {{ atividade().titulo }}
+    </h1>
+
+    <button
+      class="btn-toggle-status"
+      [class.is-done]="atividade().realizada"
+      [disabled]="salvando"
+      (click)="toggleRealizada()"
+      [title]="atividade().realizada ? 'Marcar como pendente' : 'Marcar como concluída'"
+    >
+      @if (salvando) {
+        <span class="saving-spinner"></span>
+      } @else {
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      }
+      {{ atividade().realizada ? 'Desfazer' : 'Concluir' }}
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,48 @@
+<div class="atividade-page-container">
+  <div class="header-bar">
+    <app-home-header></app-home-header>
+  </div>
+
+  @if (loading()) {
+    <div class="loading-screen">
+      <div class="spinner-ring"></div>
+      <p>Carregando atividade...</p>
+    </div>
+  }
+
+  @if (erro() && !loading()) {
+    <div class="error-screen">
+      <span class="error-icon">⚠</span>
+      <p>{{ erro() }}</p>
+      <button class="btn-voltar" (click)="voltarParaProjeto()">← Voltar</button>
+    </div>
+  }
+
+  @if (atividade() && !loading() && !erro()) {
+    <div class="page-content">
+
+      <app-atividade-page-header
+        [atividade]="atividade()!"
+        (voltar)="voltarParaProjeto()"
+        (statusAlterado)="onStatusAlterado()"
+      ></app-atividade-page-header>
+
+      <div class="content-layout">
+
+        <div class="editor-area">
+          <app-atividade-texto-editor
+            [atividade]="atividade()!"
+            (textoAtualizado)="onTextoAtualizado($event)"
+          ></app-atividade-texto-editor>
+        </div>
+
+        <aside class="sidebar-area">
+          <app-atividade-info-sidebar
+            [atividade]="atividade()!"
+          ></app-atividade-info-sidebar>
+        </aside>
+
+      </div>
+    </div>
+  }
+</div>

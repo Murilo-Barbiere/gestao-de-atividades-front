@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.atividade-page-container {
+  background-color: #1a1b25;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.header-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ─── Loading / Error ─── */
+.loading-screen,
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+  color: #8b8ca0;
+  font-size: 0.95rem;
+}
+
+.spinner-ring {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(96, 81, 155, 0.2);
+  border-top-color: #7c6db5;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-icon {
+  font-size: 2rem;
+  color: #f87171;
+}
+
+.btn-voltar {
+  padding: 8px 18px;
+  background: rgba(96, 81, 155, 0.18);
+  border: 1px solid rgba(96, 81, 155, 0.4);
+  border-radius: 8px;
+  color: #7c6db5;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-voltar:hover {
+  background: rgba(96, 81, 155, 0.35);
+  color: #bfc0d1;
+}
+
+/* ─── Main content ─── */
+.page-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.content-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .content-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-area {
+    order: -1;
+  }
+}
