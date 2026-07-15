@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AtividadesService } from '../../core/services/atividades.service';
-import { Atividade, PrioridadeAtividade } from '../../core/interface/atividade';
+import { TagsService } from '../../core/services/tags.service';
+import { Atividade, PrioridadeAtividade, Tag } from '../../core/interface/atividade';
 
 @Component({
   selector: 'app-atividade-create-popup',
@@ -16,7 +17,10 @@ export class AtividadeCreatePopupComponent implements OnInit {
   @Output() fechar = new EventEmitter<void>();
   @Output() atividadeCriada = new EventEmitter<void>();
 
-  constructor(private atividadesService: AtividadesService) {}
+  constructor(
+    private atividadesService: AtividadesService,
+    private tagsService: TagsService
+  ) {}
 
   titulo = '';
   prioridadeAtividade = PrioridadeAtividade.MEDIA;
@@ -26,12 +30,18 @@ export class AtividadeCreatePopupComponent implements OnInit {
   prioridades = Object.values(PrioridadeAtividade);
   atividadesDoProjeto: Atividade[] = [];
 
+  tagsExistentes: Tag[] = [];
+  tagSelecionadaId: number | null = null;
+  mostrandoCriarTag = false;
+  nomeNovaTag = '';
+
   carregando = false;
   erro = '';
   sucesso = false;
 
   ngOnInit(): void {
     this.carregarAtividadesDoProjeto();
+    this.carregarTags();
   }
 
   carregarAtividadesDoProjeto(): void {
@@ -41,6 +51,43 @@ export class AtividadeCreatePopupComponent implements OnInit {
       },
       error: (err) => {
         console.error('Erro ao carregar atividades do projeto:', err);
+      }
+    });
+  }
+
+  carregarTags(): void {
+    this.tagsService.getTags().subscribe({
+      next: (tags) => {
+        this.tagsExistentes = tags;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar tags:', err);
+      }
+    });
+  }
+
+  toggleCriarTag(): void {
+    this.mostrandoCriarTag = !this.mostrandoCriarTag;
+    this.nomeNovaTag = '';
+  }
+
+  criarTag(): void {
+    if (!this.nomeNovaTag.trim()) {
+      return;
+    }
+    this.carregando = true;
+    this.tagsService.postTag(this.nomeNovaTag.trim()).subscribe({
+      next: (novaTag) => {
+        this.tagsExistentes.push(novaTag);
+        this.tagSelecionadaId = novaTag.id;
+        this.nomeNovaTag = '';
+        this.mostrandoCriarTag = false;
+        this.carregando = false;
+      },
+      error: (err) => {
+        this.erro = 'Erro ao criar tag.';
+        this.carregando = false;
+        console.error(err);
       }
     });
   }
@@ -96,14 +143,23 @@ export class AtividadeCreatePopupComponent implements OnInit {
     };
 
     this.atividadesService.postAtividade(dados).subscribe({
-      next: () => {
-        this.sucesso = true;
-        this.carregando = false;
-
-        setTimeout(() => {
-          this.atividadeCriada.emit();
-          this.fechar.emit();
-        }, 900);
+      next: (atividadeCriada) => {
+        if (this.tagSelecionadaId) {
+          const tagObj = this.tagsExistentes.find(t => t.id === Number(this.tagSelecionadaId));
+          if (tagObj) {
+            this.tagsService.relacionarTagAtividade(atividadeCriada.id, tagObj.name).subscribe({
+              next: () => {
+                this.finalizarCriacao();
+              },
+              error: (err) => {
+                console.error('Erro ao associar tag:', err);
+                this.finalizarCriacao();
+              }
+            });
+            return;
+          }
+        }
+        this.finalizarCriacao();
       },
       error: (err) => {
         this.erro = 'Erro ao criar a atividade. Tente novamente.';
@@ -112,4 +168,15 @@ export class AtividadeCreatePopupComponent implements OnInit {
       },
     });
   }
+
+  private finalizarCriacao(): void {
+    this.sucesso = true;
+    this.carregando = false;
+
+    setTimeout(() => {
+      this.atividadeCriada.emit();
+      this.fechar.emit();
+    }, 900);
+  }
 }
+

@@ -69,6 +69,42 @@
         </select>
       </div>
 
+      <div class="field-group">
+        <label for="tagId">Tag (Opcional)</label>
+        <div class="tag-input-row">
+          <select
+            id="tagId"
+            name="tagId"
+            [(ngModel)]="tagSelecionadaId"
+            [disabled]="carregando"
+          >
+            <option [ngValue]="null">Nenhuma Tag</option>
+            @for (tag of tagsExistentes; track tag.id) {
+              <option [value]="tag.id">#{{ tag.name }}</option>
+            }
+          </select>
+          <button type="button" class="btn-toggle-tag" (click)="toggleCriarTag()" [disabled]="carregando">
+            +
+          </button>
+        </div>
+      </div>
+
+      @if (mostrandoCriarTag) {
+        <div class="field-group inline-add-tag">
+          <input
+            type="text"
+            placeholder="Nome da nova tag..."
+            [(ngModel)]="nomeNovaTag"
+            name="nomeNovaTag"
+            [disabled]="carregando"
+            autocomplete="off"
+          />
+          <button type="button" class="btn-save-tag" (click)="criarTag()" [disabled]="carregando || !nomeNovaTag.trim()">
+            Adicionar Tag
+          </button>
+        </div>
+      }
+
       <div class="popup-footer">
         <button
           type="button"
