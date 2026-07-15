@@ -257,4 +257,22 @@
   bottom: 1.5rem;
   width: 2px;
   background: rgba(191, 192, 209, 0.12);
+}.btn-deletar {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-deletar:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #fff;
 }

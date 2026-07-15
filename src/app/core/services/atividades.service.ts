@@ -55,5 +55,14 @@ export class AtividadesService {
 
     return this.http.post<Atividade>(`${this.apiUrl}/atividade`, dados, { headers });
   }
+
+  deleteAtividade(atividadeId: number): Observable<void> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.delete<void>(`${this.apiUrl}/atividade/${atividadeId}`, { headers });
+  }
 }
 

@@ -24,6 +24,9 @@
           <span *ngIf="atividade().vencido" class="badge expired-badge">
             Vencido
           </span>
+          <button class="btn-deletar" (click)="deletarAtividade($event)">
+            Excluir
+          </button>
         </div>
       </div>
 

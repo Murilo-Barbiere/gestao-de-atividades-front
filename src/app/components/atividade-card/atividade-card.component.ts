@@ -62,4 +62,19 @@ export class AtividadeCardComponent {
       });
     }
   }
+
+  deletarAtividade(event: Event) {
+    event.stopPropagation();
+    if (confirm('Tem certeza que deseja deletar esta atividade?')) {
+      this.atividadesService.deleteAtividade(this.atividade().id).subscribe({
+        next: () => {
+          this.statusAlterado.emit();
+        },
+        error: (err) => {
+          console.error('Erro ao deletar atividade:', err);
+          alert('Erro ao deletar a atividade.');
+        }
+      });
+    }
+  }
 }
