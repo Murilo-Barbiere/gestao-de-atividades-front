@@ -2,9 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   padding: 20px 24px;
   background: #31323E;
-  border: 1px solid #3d3e4c;
+  border: 1px solid rgba(96, 81, 155, 0.2);
   margin-bottom: 24px;
   border-radius: 15px;
 }
@@ -14,6 +16,7 @@
   font-weight: 700;
   color: #ffffff;
   margin: 0;
+  letter-spacing: -0.2px;
 }
 
 .btn-novo-projeto {
@@ -28,13 +31,30 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .btn-novo-projeto:hover {
   background: #6f5eae;
+  transform: translateY(-1px);
 }
 
 .btn-novo-projeto:active {
   background: #544586;
+  transform: translateY(0);
+}
+
+.btn-novo-projeto:focus-visible {
+  outline: 2px solid #BFC0D1;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 16px 18px;
+  }
+
+  .page-title {
+    font-size: 19px;
+  }
 }

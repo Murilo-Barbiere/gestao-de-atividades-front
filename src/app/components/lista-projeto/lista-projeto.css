@@ -3,17 +3,16 @@
     margin: 0 auto;
     padding: 20px 60px;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: #eef0f2;
+    color: #BFC0D1;
     min-height: 100vh;
 }
 
 .lista_projetos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     width: 100%;
 }
-
 
 .loading, .error, .empty {
     text-align: center;
@@ -24,7 +23,7 @@
 }
 
 .loading {
-    color: #8a8c95;
+    color: rgba(191, 192, 209, 0.7);
     animation: pulse 1.5s infinite ease-in-out;
 }
 
@@ -35,13 +34,29 @@
 }
 
 .empty {
-    background-color: #2b2d35; 
-    color: #8a8c95;
-    border: 1px dashed #3a3c46;
+    background-color: #31323E;
+    color: rgba(191, 192, 209, 0.7);
+    border: 1px dashed rgba(96, 81, 155, 0.35);
 }
 
 @keyframes pulse {
     0% { opacity: 0.6; }
     50% { opacity: 1; }
     100% { opacity: 0.6; }
+}
+
+@media (max-width: 768px) {
+    .project-container {
+        padding: 20px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-container {
+        padding: 16px;
+    }
+
+    .lista_projetos {
+        grid-template-columns: 1fr;
+    }
 }
