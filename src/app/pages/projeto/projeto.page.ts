@@ -5,11 +5,12 @@ import { AtividadeListaComponent } from '../../components/atividade-lista/ativid
 import { HomeHeader } from '../../components/home-header/home-header';
 import { ProjetoEditPopupComponent } from '../../components/projeto-edit-popup/projeto-edit-popup.component';
 import { AtividadeCreatePopupComponent } from '../../components/atividade-create-popup/atividade-create-popup';
+import { ParticipantePopupComponent } from '../../components/participante-popup/participante-popup.component';
 import { ProjetosService } from '../../core/services/projetos.service';
 
 @Component({
   selector: 'app-projeto.page',
-  imports: [CommonModule, AtividadeListaComponent, HomeHeader, ProjetoEditPopupComponent, AtividadeCreatePopupComponent],
+  imports: [CommonModule, AtividadeListaComponent, HomeHeader, ProjetoEditPopupComponent, AtividadeCreatePopupComponent, ParticipantePopupComponent],
   templateUrl: './projeto.page.html',
   styleUrl: './projeto.page.css',
 })
@@ -20,6 +21,7 @@ export class ProjetoPage implements OnInit {
   nomeProjeto = signal<string>('');
   mostrarEditPopup = signal<boolean>(false);
   mostrarCreateAtividadePopup = signal<boolean>(false);
+  mostrarParticipantePopup = signal<boolean>(false);
 
   constructor(
     private route: ActivatedRoute,
@@ -71,5 +73,13 @@ export class ProjetoPage implements OnInit {
     if (id && this.atividadeListaComponent) {
       this.atividadeListaComponent.carregarAtividades(id, this.atividadeListaComponent.filtros());
     }
+  }
+
+  abrirParticipantePopup(): void {
+    this.mostrarParticipantePopup.set(true);
+  }
+
+  fecharParticipantePopup(): void {
+    this.mostrarParticipantePopup.set(false);
   }
 }

@@ -13,6 +13,9 @@
           <button class="btn-criar-atividade" (click)="abrirCreateAtividadePopup()">
             Criar Atividade
           </button>
+          <button class="btn-editar" (click)="abrirParticipantePopup()">
+            Participantes
+          </button>
           <button class="btn-editar" (click)="abrirEditPopup()">
             Editar Projeto
           </button>
@@ -43,6 +46,13 @@
       (fechar)="fecharCreateAtividadePopup()"
       (atividadeCriada)="onAtividadeCriada()"
     ></app-atividade-create-popup>
+  }
+
+  @if (mostrarParticipantePopup() && projetoId()) {
+    <app-participante-popup
+      [projetoId]="projetoId()!"
+      (fechar)="fecharParticipantePopup()"
+    ></app-participante-popup>
   }
 
 </div>

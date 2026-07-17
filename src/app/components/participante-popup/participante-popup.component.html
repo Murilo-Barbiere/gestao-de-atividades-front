@@ -1,0 +1,70 @@
+<div class="popup-overlay" (click)="onOverlayClick($event)">
+  <div class="popup-card">
+
+    <div class="popup-header">
+      <h2 class="popup-title">Participantes do Projeto</h2>
+      <button class="btn-close" (click)="fecharPopup()">&times;</button>
+    </div>
+
+    <div class="field-group">
+      <label for="email-participante">Adicionar participante</label>
+      <div class="add-participante-row">
+        <input
+          id="email-participante"
+          type="email"
+          [(ngModel)]="emailNovoParticipante"
+          name="emailNovoParticipante"
+          placeholder="email@exemplo.com"
+          [disabled]="adicionando"
+          autocomplete="off"
+          (keyup.enter)="adicionarParticipante()"
+        />
+        <button
+          class="btn-adicionar"
+          (click)="adicionarParticipante()"
+          [disabled]="adicionando || !emailNovoParticipante.trim()"
+        >
+          {{ adicionando ? 'Adicionando...' : 'Adicionar' }}
+        </button>
+      </div>
+      @if (erroAdicionar) {
+        <div class="alert-error">{{ erroAdicionar }}</div>
+      }
+    </div>
+
+    @if (erro) {
+      <div class="alert-error">{{ erro }}</div>
+    }
+
+    <div class="participantes-lista">
+      @if (carregandoLista) {
+        <p class="estado-info">Carregando participantes...</p>
+      } @else if (participantes.length === 0) {
+        <p class="estado-info">Nenhum participante neste projeto ainda.</p>
+      } @else {
+        @for (participante of participantes; track participante.id) {
+          <div class="participante-item">
+            <div class="participante-avatar">{{ participante.name.charAt(0).toUpperCase() }}</div>
+            <div class="participante-info">
+              <span class="participante-nome">{{ participante.name }}</span>
+              <span class="participante-email">{{ participante.email }}</span>
+            </div>
+            <button
+              class="btn-remover"
+              (click)="removerParticipante(participante)"
+              [disabled]="removendoId === participante.id"
+              title="Remover participante"
+            >
+              {{ removendoId === participante.id ? '...' : 'Remover' }}
+            </button>
+          </div>
+        }
+      }
+    </div>
+
+    <div class="popup-footer">
+      <button class="btn-fechar" (click)="fecharPopup()">Fechar</button>
+    </div>
+
+  </div>
+</div>

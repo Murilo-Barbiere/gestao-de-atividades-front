@@ -1,0 +1,232 @@
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-card {
+  background: #31323e;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 85vh;
+  padding: 24px;
+  color: #bfc0d1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.popup-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #bfc0d1;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+  color: #8b8ca0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-close:hover {
+  color: #bfc0d1;
+}
+
+/* Campo de adicionar participante */
+.field-group {
+  margin-bottom: 16px;
+}
+
+.field-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8b8ca0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.add-participante-row {
+  display: flex;
+  gap: 8px;
+}
+
+.add-participante-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  background: #1e202c;
+  border: 1px solid rgba(191, 192, 209, 0.12);
+  border-radius: 8px;
+  color: #bfc0d1;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.add-participante-row input:focus {
+  outline: none;
+  border-color: #60519b;
+  box-shadow: 0 0 0 3px rgba(96, 81, 155, 0.25);
+}
+
+.btn-adicionar {
+  padding: 10px 16px;
+  background: #60519b;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #bfc0d1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-adicionar:hover:not(:disabled) {
+  background: #4a3d7a;
+}
+
+.btn-adicionar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Alertas */
+.alert-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+/* Lista de participantes */
+.participantes-lista {
+  overflow-y: auto;
+  margin-bottom: 16px;
+  border-top: 1px solid rgba(191, 192, 209, 0.1);
+  padding-top: 12px;
+}
+
+.estado-info {
+  color: #8b8ca0;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px 0;
+  margin: 0;
+}
+
+.participante-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 6px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.participante-item:hover {
+  background: rgba(191, 192, 209, 0.05);
+}
+
+.participante-avatar {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(96, 81, 155, 0.25);
+  color: #bfc0d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.participante-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.participante-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: #bfc0d1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.participante-email {
+  font-size: 12px;
+  color: #8b8ca0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-remover {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-remover:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.btn-remover:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Rodapé */
+.popup-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-fechar {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(191, 192, 209, 0.1);
+  color: #bfc0d1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-fechar:hover {
+  background: rgba(191, 192, 209, 0.18);
+}
