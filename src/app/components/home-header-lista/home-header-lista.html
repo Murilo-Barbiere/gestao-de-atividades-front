@@ -1,8 +1,17 @@
 <div class="page-header">
-  <h1 class="page-title">Meus Projetos</h1>
+  <div class="header-left">
+    <h1 class="page-title">Meus Projetos</h1>
+    <span class="project-count">
+      {{ totalProjetos() }} {{ totalProjetos() === 1 ? 'projeto' : 'projetos' }}
+    </span>
+  </div>
 
   <button class="btn-novo-projeto" (click)="abrirPopup()">
-    + Novo Projeto
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"/>
+      <line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    Novo Projeto
   </button>
 </div>
 

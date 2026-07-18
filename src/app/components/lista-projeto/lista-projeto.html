@@ -1,24 +1,52 @@
 <div class="project-container">
   <div class="header">
-    <app-home-header-lista></app-home-header-lista>
+    <app-home-header-lista [totalProjetos]="projetos().length"></app-home-header-lista>
   </div>
 
-  <p class="loading" *ngIf="carregando()">
-    Carregando projetos...
-  </p>
+  @if (carregando()) {
+    <div class="state-card loading">
+      <div class="loading-spinner">
+        <svg viewBox="0 0 50 50" width="40" height="40">
+          <circle cx="25" cy="25" r="20" fill="none" stroke="rgba(96,81,155,0.2)" stroke-width="4"/>
+          <circle cx="25" cy="25" r="20" fill="none" stroke="#60519b" stroke-width="4" stroke-linecap="round" stroke-dasharray="90 150" stroke-dashoffset="0"/>
+        </svg>
+      </div>
+      <span class="state-text">Carregando projetos...</span>
+    </div>
+  }
 
-  <p class="error" *ngIf="erro()">
-    {{ erro() }}
-  </p>
+  @if (erro()) {
+    <div class="state-card error">
+      <div class="state-icon error-icon">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <span class="state-text">{{ erro() }}</span>
+    </div>
+  }
 
-  <div class="lista_projetos">
-    <app-projeto-card
-      *ngFor="let projeto of projetos()"
-      [projeto] = "projeto">
-    </app-projeto-card>
-  </div>
+  @if (!carregando() && !erro()) {
+    <div class="lista_projetos">
+      @for (projeto of projetos(); track projeto.id; let i = $index) {
+        <div class="card-wrapper" [style.animation-delay]="i * 0.05 + 's'">
+          <app-projeto-card [projeto]="projeto"></app-projeto-card>
+        </div>
+      }
+    </div>
+  }
 
-  <p class="empty" *ngIf="!carregando() && !erro() && projetos().length === 0">
-    Nenhum projeto encontrado.
-  </p>
+  @if (!carregando() && !erro() && projetos().length === 0) {
+    <div class="state-card empty">
+      <div class="state-icon empty-icon">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <span class="empty-title">Nenhum projeto encontrado</span>
+      <span class="empty-subtitle">Crie seu primeiro projeto para comecar</span>
+    </div>
+  }
 </div>

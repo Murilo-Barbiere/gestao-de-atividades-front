@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjetoCreatePopup } from '../projeto-create-popup/projeto-create-popup';
 
@@ -10,6 +10,7 @@ import { ProjetoCreatePopup } from '../projeto-create-popup/projeto-create-popup
   styleUrl: './home-header-lista.css',
 })
 export class HomeHeaderLista {
+  totalProjetos = input(0);
   popupAberto = signal(false);
 
   abrirPopup(): void {

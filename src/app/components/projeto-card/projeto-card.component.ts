@@ -1,7 +1,7 @@
 import { Component, input, computed, output } from '@angular/core';
 import { Projeto } from '../../core/interface/projeto';
 import { Router } from '@angular/router';
-import { SlicePipe } from '@angular/common'; // Necessário para o pipe de iniciais no HTML
+import { SlicePipe } from '@angular/common';
 
 @Component({
   selector: 'app-projeto-card',

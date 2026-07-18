@@ -1,10 +1,9 @@
 .project-container {
-    max-width: 1000px;
+    max-width: 1060px;
     margin: 0 auto;
-    padding: 20px 60px;
+    padding: 0 60px 40px;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: #BFC0D1;
-    min-height: 100vh;
+    color: #bfc0d1;
 }
 
 .lista_projetos {
@@ -14,49 +13,113 @@
     width: 100%;
 }
 
-.loading, .error, .empty {
-    text-align: center;
-    padding: 40px 20px;
-    border-radius: 12px;
-    font-size: 15px;
+.card-wrapper {
+    animation: cardEntrance 0.4s ease-out both;
+}
+
+.state-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 52px 24px 48px;
+    border-radius: 14px;
     margin: 20px 0;
 }
 
-.loading {
-    color: rgba(191, 192, 209, 0.7);
-    animation: pulse 1.5s infinite ease-in-out;
+.state-card.loading {
+    background: #31323e;
+    border: 1px solid rgba(191, 192, 209, 0.08);
 }
 
-.error {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
+.loading-spinner svg {
+    animation: spin 1.2s linear infinite;
+    transform-origin: center;
+}
+
+.state-text {
+    font-size: 15px;
+    color: rgba(191, 192, 209, 0.6);
+}
+
+.state-card.error {
+    background: rgba(239, 68, 68, 0.08);
     border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-.empty {
-    background-color: #31323E;
-    color: rgba(191, 192, 209, 0.7);
-    border: 1px dashed rgba(96, 81, 155, 0.35);
+.state-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
+.error-icon {
+    color: #ef4444;
+    opacity: 0.85;
+}
+
+.state-card.empty {
+    background: #31323e;
+    border: 1px dashed rgba(96, 81, 155, 0.3);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.state-card.empty:hover {
+    border-color: rgba(96, 81, 155, 0.5);
+    background: #373844;
+}
+
+.empty-icon {
+    color: #8b8ca0;
+    margin-bottom: 4px;
+}
+
+.empty-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #bfc0d1;
+}
+
+.empty-subtitle {
+    font-size: 13px;
+    color: #8b8ca0;
+    margin-top: -6px;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 768px) {
     .project-container {
-        padding: 20px 24px;
+        padding: 0 24px 32px;
     }
 }
 
 @media (max-width: 480px) {
     .project-container {
-        padding: 16px;
+        padding: 0 16px 24px;
     }
 
     .lista_projetos {
         grid-template-columns: 1fr;
+    }
+
+    .state-card {
+        padding: 40px 20px 36px;
     }
 }

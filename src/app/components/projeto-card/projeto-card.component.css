@@ -1,81 +1,119 @@
 .card {
-    background-color: #31323E;
+    background-color: #31323e;
     border: 1px solid rgba(96, 81, 155, 0.2);
     border-radius: 16px;
-    padding: 16px 20px;
+    padding: 20px 22px;
     width: 100%;
     box-sizing: border-box;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #60519b, #7c6db5, #60519b);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    background-color: #443a66;
-    border-color: #60519B;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+    background-color: #4a3d7a;
+    border-color: #7c6db5;
+    box-shadow: 0 8px 28px rgba(96, 81, 155, 0.25);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:active {
+    transform: translateY(-1px) scale(0.99);
 }
 
 .card:focus-visible {
-    outline: 2px solid #BFC0D1;
+    outline: 2px solid #bfc0d1;
     outline-offset: 2px;
 }
 
 .card-header {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 28px;
+    gap: 12px;
+    margin-bottom: 24px;
 }
 
 .icon-container {
-    background-color: #1E202C;
-    width: 35px;
-    height: 35px;
-    border-radius: 8px;
+    background-color: #1e202c;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(96, 81, 155, 0.3);
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.card:hover .icon-container {
+    border-color: rgba(124, 109, 181, 0.5);
+    background-color: rgba(30, 32, 44, 0.8);
 }
 
 .folder-icon {
     width: 20px;
-    height: 13px;
+    height: 14px;
     position: relative;
-    background-color: #a394cf;
+    background-color: #7c6db5;
     border-radius: 2px;
+    transition: background-color 0.25s ease;
+}
+
+.card:hover .folder-icon {
+    background-color: #a394cf;
 }
 
 .folder-icon::after {
     content: '';
     width: 10px;
     height: 4px;
-    background-color: #a394cf;
+    background-color: #7c6db5;
     border-radius: 2px 2px 0 0;
     position: absolute;
     top: -4px;
     left: 0;
+    transition: background-color 0.25s ease;
+}
+
+.card:hover .folder-icon::after {
+    background-color: #a394cf;
 }
 
 .user-icon-css {
     position: relative;
-    width: 12px;
-    height: 6px;
-    background-color: rgba(191, 192, 209, 0.6);
+    width: 13px;
+    height: 7px;
+    background-color: rgba(191, 192, 209, 0.5);
     border-radius: 6px 6px 0 0;
-    margin-top: 7px;
+    margin-top: 6px;
 }
 
 .user-icon-css::after {
     content: '';
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: rgba(191, 192, 209, 0.6);
+    width: 7px;
+    height: 7px;
+    background-color: rgba(191, 192, 209, 0.5);
     border-radius: 50%;
     top: -7px;
     left: 3px;
@@ -84,18 +122,23 @@
 .participantes-contador {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
 }
 
 .card-header h2 {
     margin: 0;
-    color: #ffffff;
+    color: #eeedf6;
     font-size: 20px;
     font-weight: 700;
-    letter-spacing: -0.2px;
+    letter-spacing: -0.3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.25s ease;
+}
+
+.card:hover .card-header h2 {
+    color: #ffffff;
 }
 
 .participantes {
@@ -106,7 +149,7 @@
 
 .participantes h4 {
     margin: 0;
-    color: rgba(191, 192, 209, 0.7);
+    color: rgba(191, 192, 209, 0.65);
     font-size: 14px;
     font-weight: 400;
 }
@@ -121,28 +164,39 @@
 }
 
 .participantes li {
-    background-color: #60519B;
+    background-color: #60519b;
     color: #ffffff;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    border: 2px solid #31323E;
+    border: 2px solid #31323e;
     margin-left: -12px;
     overflow: hidden;
     white-space: nowrap;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover .participantes li {
+    border-color: #4a3d7a;
 }
 
 .participantes li:first-child {
     margin-left: 0;
 }
 
+.participantes li:hover {
+    transform: translateY(-2px);
+    z-index: 2;
+}
+
 .mais-participantes {
-    background-color: #1E202C;
+    background-color: #1e202c;
     color: rgba(191, 192, 209, 0.85);
+    font-size: 10px;
 }
